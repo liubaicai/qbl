@@ -1,37 +1,57 @@
 <template>
-  <h1>{{ msg }}</h1>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">Vite Documentation</a> |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
-
-  <button @click="state.count++">count is: {{ state.count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  <div class="hello">
+    <div style="font-size:26px;">{{ message }}</div>
+    <div>
+      <el-button @click="onLightThemes">light</el-button>
+      <el-button @click="onDarkThemes">dark</el-button>
+    </div>
+    <div>{{ $fmtd($ls.now()) }}</div>
+  </div>
 </template>
 
-<script setup>
-import { defineProps, reactive } from 'vue'
-
-defineProps({
-  msg: String
-})
-
-const state = reactive({ count: 0 })
-</script>
 <script>
+import sayHelloWorld from '@/composables/sayHelloWorld'
+import { ref, toRefs, getCurrentInstance } from 'vue'
+
 export default {
-  mounted() {
-    console.log(this.msg)
+  name: 'HelloWorld',
+  props: {
+    msg: String,
+  },
+  setup(props) {
+    const instance = getCurrentInstance()
+
+    const { msg } = toRefs(props)
+    const newMsg = ref(instance.ctx.$ls.clone(msg.value))
+
+    const { message } = sayHelloWorld(newMsg)
+
+    return {
+      message,
+    }
+  },
+  methods: {
+    onLightThemes() {
+      window.changeThemes('light')
+    },
+    onDarkThemes() {
+      window.changeThemes('dark')
+    },
   },
 }
 </script>
 
-<style scoped>
-a {
-  color: #42b983;
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
 }
 </style>

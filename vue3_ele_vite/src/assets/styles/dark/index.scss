@@ -1,0 +1,12 @@
+.default.dark {
+    #app {
+        background-color: #333333;
+        color: #ffffff;
+
+        a {
+            &.router-link-exact-active {
+                color: #ffffff;
+            }
+        }
+    }
+}
