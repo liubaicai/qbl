@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <div style="font-size:26px;">{{ message }}</div>
+    <div style="font-size: 26px">{{ message }}</div>
     <div><svg-icon icon-class="word"></svg-icon></div>
     <div>
       <a-button @click="onLightThemes">light</a-button>
@@ -11,35 +11,35 @@
 </template>
 
 <script>
-import sayHelloWorld from '@/composables/sayHelloWorld'
-import { ref, toRefs, getCurrentInstance } from 'vue'
+import sayHelloWorld from "@/composables/sayHelloWorld";
+import { ref, toRefs, getCurrentInstance } from "vue";
 
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
     msg: String,
   },
   setup(props) {
-    const instance = getCurrentInstance()
+    const instance = getCurrentInstance();
 
-    const { msg } = toRefs(props)
-    const newMsg = ref(instance.ctx.$ls.clone(msg.value))
+    const { msg } = toRefs(props);
+    const newMsg = ref(instance.ctx.$ls.clone(msg.value));
 
-    const { message } = sayHelloWorld(newMsg)
+    const { message } = sayHelloWorld(newMsg);
 
     return {
       message,
-    }
+    };
   },
   methods: {
     onLightThemes() {
-      window.changeThemes('light')
+      window.changeThemes("light");
     },
     onDarkThemes() {
-      window.changeThemes('dark')
+      window.changeThemes("dark");
     },
   },
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

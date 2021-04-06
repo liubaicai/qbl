@@ -1,32 +1,24 @@
 module.exports = {
   root: true,
   env: {
+    browser: true,
+    amd: true,
     node: true,
   },
-  extends: [
-    'plugin:vue/vue3-essential',
-    '@vue/airbnb',
-  ],
+  extends: ["plugin:vue/vue3-essential", "eslint:recommended", "plugin:prettier/recommended"],
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: "babel-eslint",
   },
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    semi: [2, 'never'],
-    'max-len': [2, { code: 120 }],
-    'linebreak-style': [0, 'error', 'windows'],
-    camelcase: 0,
+    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
   },
   overrides: [
     {
-      files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)',
-      ],
+      files: ["**/__tests__/*.{j,t}s?(x)", "**/tests/unit/**/*.spec.{j,t}s?(x)"],
       env: {
         mocha: true,
       },
     },
   ],
-}
+};

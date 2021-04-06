@@ -1,15 +1,19 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from '@/router'
-import store from '@/store'
-import plugins from '@/plugins'
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "@/router";
+import store from "@/store";
+import plugins from "@/plugins";
 
-import '@/assets/styles/index.scss'
-import 'element-plus/packages/theme-chalk/src/base.scss'
+import "vite-plugin-svg-icons/register";
+import icons from "@/assets/icons";
 
-const app = createApp(App)
-app.use(router)
-app.use(store)
-app.use(plugins)
+import "@/assets/styles/index.scss";
+import "element-plus/packages/theme-chalk/src/base.scss";
 
-app.mount('#app')
+const app = createApp(App);
+app.use(router);
+app.use(store);
+app.use(plugins);
+app.use(icons);
+
+app.mount("#app");
