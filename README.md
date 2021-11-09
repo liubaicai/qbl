@@ -1,3 +1,1 @@
-# 代号'qbl'
-
-vue3 项目模板
+vue3 + element-plus + vite
