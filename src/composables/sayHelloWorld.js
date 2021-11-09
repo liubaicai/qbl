@@ -6,7 +6,7 @@ export default function sayHelloWorld(msg) {
     message.value = `${msg.value}!`;
   };
 
-  onMounted(sayHello());
+  onMounted(sayHello);
 
   return {
     message,

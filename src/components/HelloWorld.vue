@@ -23,9 +23,10 @@ export default {
   },
   setup(props) {
     const instance = getCurrentInstance();
+    const global = instance.appContext.config.globalProperties;
 
     const { msg } = toRefs(props);
-    const newMsg = ref(instance.ctx.$ls.clone(msg.value));
+    const newMsg = ref(global.$ls.clone(msg.value));
 
     const { message } = sayHelloWorld(newMsg);
 

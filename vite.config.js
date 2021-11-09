@@ -30,10 +30,10 @@ export default defineConfig({
           libraryName: "element-plus",
           resolveStyle: (name) => {
             name = name.substr(3);
-            return `element-plus/packages/theme-chalk/src/${name}.scss`;
+            return `element-plus/theme-chalk/src/${name}.scss`;
           },
           resolveComponent: (name) => {
-            return `element-plus/lib/${name}`;
+            return `element-plus/lib/components/${name}`;
           },
         },
       ],
