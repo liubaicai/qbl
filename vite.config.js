@@ -1,8 +1,9 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
-import styleImport from "vite-plugin-style-import";
+// import styleImport from "vite-plugin-style-import";
 import viteSvgIcons from "vite-plugin-svg-icons";
+import ElementPlus from "unplugin-element-plus/vite";
 import path from "path";
 
 function pathResolve(dir) {
@@ -24,20 +25,22 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    styleImport({
-      libs: [
-        {
-          libraryName: "element-plus",
-          resolveStyle: (name) => {
-            name = name.substr(3);
-            return `element-plus/theme-chalk/src/${name}.scss`;
-          },
-          resolveComponent: (name) => {
-            return `element-plus/lib/components/${name}`;
-          },
-        },
-      ],
-    }),
+    ElementPlus(),
+    // styleImport({
+    //   libs: [
+    //     {
+    //       libraryName: "element-plus",
+    //       resolveStyle: (name) => {
+    //         name = name.substr(3);
+    //         return `element-plus/theme-chalk/src/${name}.scss`;
+    //       },
+    //       resolveComponent: (name) => {
+    //         name = name.substr(3);
+    //         return `element-plus/lib/components/${name}`;
+    //       },
+    //     },
+    //   ],
+    // }),
     viteSvgIcons({
       // 指定需要缓存的图标文件夹
       iconDirs: [path.resolve(process.cwd(), "src/assets/icons/svg")],

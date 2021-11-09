@@ -4,6 +4,9 @@ module.exports = {
     amd: true,
     node: true,
   },
+  globals: {
+    defineProps: true,
+  },
   extends: [
     "plugin:vue/vue3-essential",
     "eslint:recommended",
