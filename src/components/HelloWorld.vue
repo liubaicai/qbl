@@ -25,6 +25,9 @@ export default {
     const instance = getCurrentInstance();
     const global = instance.appContext.config.globalProperties;
 
+    // const { proxy } = getCurrentInstance(); // 这样也行
+    // console.log(global.$ls);
+
     const { msg } = toRefs(props);
     const newMsg = ref(global.$ls.clone(msg.value));
 
