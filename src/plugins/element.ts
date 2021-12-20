@@ -79,10 +79,11 @@ import {
   // ElUpload,
   // ElInfiniteScroll,
   // ElLoading,
-  // ElMessage,
+  ElMessage,
   // ElMessageBox,
   // ElNotification,
 } from "element-plus";
+import { App } from "vue";
 
 const components = [
   // ElAlert,
@@ -168,12 +169,12 @@ const components = [
 const plugins = [
   // ElInfiniteScroll,
   // ElLoading,
-  // ElMessage,
+  ElMessage,
   // ElMessageBox,
   // ElNotification,
 ];
 
-const install = (app) => {
+const install = (app: App<Element>) => {
   components.forEach((component) => {
     app.component(component.name, component);
   });

@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import legacy from "@vitejs/plugin-legacy";
 import { resolve } from "path";
-// import styleImport from "vite-plugin-style-import";
 import viteSvgIcons from "vite-plugin-svg-icons";
 import ElementPlus from "unplugin-element-plus/vite";
 import path from "path";
@@ -28,22 +28,10 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    legacy({
+      targets: ["defaults", "chrome > 48", "> 0.5%", "IE 11"],
+    }),
     ElementPlus(),
-    // styleImport({
-    //   libs: [
-    //     {
-    //       libraryName: "element-plus",
-    //       resolveStyle: (name) => {
-    //         name = name.substr(3);
-    //         return `element-plus/theme-chalk/src/${name}.scss`;
-    //       },
-    //       resolveComponent: (name) => {
-    //         name = name.substr(3);
-    //         return `element-plus/lib/components/${name}`;
-    //       },
-    //     },
-    //   ],
-    // }),
     viteSvgIcons({
       // 指定需要缓存的图标文件夹
       iconDirs: [path.resolve(process.cwd(), "src/assets/icons/svg")],

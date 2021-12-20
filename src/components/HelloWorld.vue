@@ -12,24 +12,24 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import sayHelloWorld from "@/composables/sayHelloWorld";
-import { ref, toRefs, getCurrentInstance } from "vue";
+import { ref, toRefs, getCurrentInstance, defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "HelloWorld",
   props: {
     msg: String,
   },
   setup(props) {
     const instance = getCurrentInstance();
-    const global = instance.appContext.config.globalProperties;
+    const global = instance?.appContext.config.globalProperties;
 
     // const { proxy } = getCurrentInstance(); // 这样也行
     // console.log(global.$ls);
 
     const { msg } = toRefs(props);
-    const newMsg = ref(global.$ls.clone(msg.value));
+    const newMsg = ref(global?.$ls.clone(msg.value));
 
     const { message } = sayHelloWorld(newMsg);
 
@@ -45,7 +45,7 @@ export default {
       window.changeThemes("dark");
     },
   },
-};
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

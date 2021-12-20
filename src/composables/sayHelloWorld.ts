@@ -1,6 +1,6 @@
 import { ref, onMounted } from "vue";
 
-export default function sayHelloWorld(msg) {
+export default function sayHelloWorld(msg: any) {
   const message = ref("");
   const sayHello = async () => {
     message.value = `${msg.value}!`;
