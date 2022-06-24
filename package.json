@@ -9,6 +9,7 @@
     "lint": "npm run format && eslint --fix --ext .ts,.vue src"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "dayjs": "^1.11.3",
     "element-plus": "^2.2.6",
     "lodash": "^4.17.21",

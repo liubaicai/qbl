@@ -16,6 +16,7 @@
 import sayHelloWorld from "@/composables/sayHelloWorld";
 import { ref, toRefs, getCurrentInstance, defineComponent } from "vue";
 import { useIndexStore } from "@/stores/index";
+import api from "@/api/index";
 
 export default defineComponent({
   name: "HelloWorld",
@@ -41,6 +42,11 @@ export default defineComponent({
     return {
       message,
     };
+  },
+  mounted() {
+    api.main.ping().then(() => {
+      console.log("pong");
+    });
   },
   methods: {
     onLightThemes() {
