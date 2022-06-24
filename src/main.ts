@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "@/router";
-import store from "@/store";
+import { createPinia } from "pinia";
 import plugins from "@/plugins";
 
 import "vite-plugin-svg-icons/register";
@@ -12,7 +12,7 @@ import "element-plus/theme-chalk/src/base.scss";
 
 const app = createApp(App);
 app.use(router);
-app.use(store);
+app.use(createPinia());
 app.use(plugins);
 app.use(icons);
 

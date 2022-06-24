@@ -15,6 +15,7 @@
 <script lang="ts">
 import sayHelloWorld from "@/composables/sayHelloWorld";
 import { ref, toRefs, getCurrentInstance, defineComponent } from "vue";
+import { useIndexStore } from "@/stores/index";
 
 export default defineComponent({
   name: "HelloWorld",
@@ -31,7 +32,11 @@ export default defineComponent({
     const { msg } = toRefs(props);
     const newMsg = ref(global?.$ls.clone(msg.value));
 
-    const { message } = sayHelloWorld(newMsg);
+    const iStore = useIndexStore();
+    iStore.sendMessage(newMsg.value);
+    const iMsg = ref(iStore.msg);
+
+    const { message } = sayHelloWorld(iMsg);
 
     return {
       message,

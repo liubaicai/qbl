@@ -3,7 +3,9 @@ import vue from "@vitejs/plugin-vue";
 import legacy from "@vitejs/plugin-legacy";
 import { resolve } from "path";
 import viteSvgIcons from "vite-plugin-svg-icons";
-import ElementPlus from "unplugin-element-plus/vite";
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import path from "path";
 
 function pathResolve(dir) {
@@ -31,7 +33,12 @@ export default defineConfig({
     legacy({
       targets: ["defaults", "chrome > 48", "> 0.5%", "IE 11"],
     }),
-    ElementPlus(),
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    }),
     viteSvgIcons({
       // 指定需要缓存的图标文件夹
       iconDirs: [path.resolve(process.cwd(), "src/assets/icons/svg")],
