@@ -1,12 +1,12 @@
 import { ElMessage } from "element-plus";
 import service from "./axios";
 import _ from "lodash";
-import { AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from "axios";
 
 const headers = {
   "Content-Type": "application/json",
   Accept: "application/json",
-};
+} as AxiosRequestHeaders;
 
 const messageForFailed = _.debounce((e) => {
   ElMessage({

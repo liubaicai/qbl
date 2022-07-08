@@ -1,6 +1,7 @@
 import { request } from "@/api/core/request";
+import { AxiosRequestHeaders } from "axios";
 
-function cryptoRandomString(e: number) {
+function cryptoRandomString(e?: number) {
   e = e || 32;
   const t = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678";
   const a = t.length;
@@ -20,49 +21,38 @@ class Base {
     this.rootPoint = rootPoint;
   }
 
-  get = (url: string, params?: any, headers?: any) =>
+  get = (url: string, params?: any, headers?: AxiosRequestHeaders) =>
     this.request({
       url,
       method: "get",
       params,
-      headers: Object.assign(headers || {}, {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      }),
+      headers,
     });
 
-  post = (url: string, data: any, params?: any, headers?: any) =>
+  post = (url: string, data: any, params?: any, headers?: AxiosRequestHeaders) =>
     this.request({
       url,
       method: "post",
       data,
-      headers: Object.assign(headers || {}, {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      }),
       params,
+      headers,
     });
 
-  put = (url: string, data: any, params?: any, headers?: any) =>
+  put = (url: string, data: any, params?: any, headers?: AxiosRequestHeaders) =>
     this.request({
       url,
       method: "put",
       data,
-      headers: Object.assign(headers || {}, {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      }),
       params,
+      headers,
     });
 
-  delete = (url: string, headers?: any) =>
+  delete = (url: string, params?: any, headers?: AxiosRequestHeaders) =>
     this.request({
       url,
       method: "delete",
-      headers: Object.assign(headers || {}, {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      }),
+      params,
+      headers,
     });
 
   list = (params?: any) =>
@@ -95,7 +85,7 @@ class Base {
 
   del = (id: string | number) =>
     this.request({
-      url: `${this.rootPoint}?id=${id}`,
+      url: `${this.rootPoint}/${id}`,
       method: "delete",
     });
 }
