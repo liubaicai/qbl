@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build:vite": "vue-tsc --noEmit && vite build",
+    "build": "node build/build.js",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.vue\"",
     "lint": "npm run format && eslint --fix --ext .ts,.vue src"
@@ -32,6 +33,7 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.2",
     "prettier": "^2.7.1",
+    "rollup-plugin-visualizer": "^5.6.0",
     "sass": "^1.53.0",
     "typescript": "^4.7.4",
     "unplugin-auto-import": "^0.9.1",

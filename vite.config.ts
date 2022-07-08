@@ -7,6 +7,7 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import path from "path";
+import { visualizer } from "rollup-plugin-visualizer";
 
 function pathResolve(dir) {
   return resolve(__dirname, ".", dir);
@@ -26,6 +27,7 @@ export default defineConfig({
           elementplus: ["element-plus"],
         },
       },
+      input: ["./index.html", "./vis.html"],
     },
   },
   plugins: [
@@ -45,6 +47,7 @@ export default defineConfig({
       // 指定symbolId格式
       symbolId: "icon-[dir]-[name]",
     }),
+    visualizer(),
   ],
   resolve: {
     alias: {
