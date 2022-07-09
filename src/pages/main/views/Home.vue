@@ -7,9 +7,11 @@
 
 <script lang="ts">
 import HelloWorld from "@/components/HelloWorld.vue";
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   components: {
     HelloWorld,
   },
-};
+});
 </script>

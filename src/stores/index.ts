@@ -2,13 +2,15 @@ import { defineStore } from "pinia";
 
 export const useIndexStore = defineStore("index", {
   state: () => {
-    return { msg: "" };
+    return {
+      pageData: Object.create(null),
+    };
   },
   // could also be defined as
   // state: () => ({ count: 0 })
   actions: {
-    sendMessage(msg: string) {
-      this.msg = msg;
+    setPageData(key: string, value: any) {
+      this.pageData[key] = value;
     },
   },
 });

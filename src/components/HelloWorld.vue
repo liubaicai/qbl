@@ -8,7 +8,7 @@
       <el-button @click="onLightThemes">light</el-button>
       <el-button @click="onDarkThemes">dark</el-button>
     </div>
-    <div>{{ $fmtd($ls.now()) }}</div>
+    <div>{{ $fmtd($_.now()) }}</div>
   </div>
 </template>
 
@@ -27,15 +27,12 @@ export default defineComponent({
     const instance = getCurrentInstance();
     const global = instance?.appContext.config.globalProperties;
 
-    // const { proxy } = getCurrentInstance(); // 这样也行
-    // console.log(global.$ls);
-
     const { msg } = toRefs(props);
-    const newMsg = ref(global?.$ls.clone(msg.value));
+    const newMsg = ref(global?.$_.clone(msg.value));
 
     const iStore = useIndexStore();
-    iStore.sendMessage(newMsg.value);
-    const iMsg = ref(iStore.msg);
+    iStore.setPageData("demo_msg", newMsg.value);
+    const iMsg = ref(iStore.pageData["demo_msg"]);
 
     const { message } = sayHelloWorld(iMsg);
 
@@ -47,6 +44,13 @@ export default defineComponent({
     api.main.ping().then(() => {
       console.log("pong");
     });
+    console.log(useIndexStore().pageData);
+    this.storeData = {
+      msg: "Hello World",
+    };
+    setTimeout(() => {
+      console.log(useIndexStore().pageData);
+    }, 3000);
   },
   methods: {
     onLightThemes() {
