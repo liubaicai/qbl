@@ -10,6 +10,21 @@
     </div>
     <div>{{ $fmtd($_.now()) }}</div>
   </div>
+
+  <el-input v-model="filters.keyword" placeholder="请输入内容" />
+  <el-button type="primary" @click="onSearch">搜索</el-button>
+
+  <el-pagination
+    background
+    v-model:currentPage="pager.currentPage"
+    :page-sizes="[5, 10, 15, 20, 30, 50, 100, 500, 1000]"
+    :page-size="pager.pageSize"
+    layout="total, sizes, prev, pager, next, jumper"
+    :total="pager.total"
+    @size-change="onPagerSizeChange"
+    @current-change="onPagerChange"
+  >
+  </el-pagination>
 </template>
 
 <script setup lang="ts">
@@ -18,6 +33,7 @@ import { ref, toRefs, getCurrentInstance, onMounted } from "vue";
 import { useIndexStore } from "@/stores/index";
 import api from "@/api/index";
 import pd from "@/utils/pageData";
+import pt from "@/utils/pager";
 
 const props = defineProps({
   msg: {
@@ -26,7 +42,16 @@ const props = defineProps({
   },
 });
 
-const { storeData } = pd();
+const { pageKey, storeData } = pd();
+const { filters, pager, onPagerSizeChange, onPagerChange, onSearch, initGetData } = pt();
+
+filters.keyword = "";
+
+const getData = (page = 1) => {
+  console.log(JSON.stringify(filters));
+  console.log("loading data:", page);
+};
+initGetData(getData);
 
 const instance = getCurrentInstance();
 const global = instance?.appContext.config.globalProperties;
@@ -59,6 +84,10 @@ onMounted(() => {
   setTimeout(() => {
     console.log(useIndexStore().pageData);
   }, 3000);
+
+  console.log(pageKey);
+  pager.total = 263;
+  getData();
 });
 </script>
 
