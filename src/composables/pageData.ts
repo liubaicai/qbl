@@ -7,20 +7,21 @@ export default function () {
   const saveLoading = ref(false);
   const route = useRoute();
   const pageKey = route.name as string;
+  const iStore = useIndexStore();
   const storeData = computed({
     get: function (): any {
-      return useIndexStore().pageData[pageKey];
+      return iStore.pageData[pageKey];
     },
     set: function (val: any) {
-      const oldObj = useIndexStore().pageData[pageKey];
+      const oldObj = iStore.pageData[pageKey];
       if (oldObj) {
         const oldStr = JSON.stringify(oldObj);
         const newStr = JSON.stringify(val);
         if (oldStr !== newStr) {
-          useIndexStore().pageData[pageKey] = val;
+          iStore.pageData[pageKey] = val;
         }
       } else {
-        useIndexStore().pageData[pageKey] = val;
+        iStore.pageData[pageKey] = val;
       }
     },
   });

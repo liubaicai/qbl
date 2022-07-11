@@ -20,18 +20,18 @@ import { useRouter, useRoute } from "vue-router";
 import { nextTick, computed } from "vue";
 import { useIndexStore } from "@/stores/index";
 
-const isRouted = computed(() => useIndexStore().routes.length > 0);
+const iStore = useIndexStore();
+
+const isRouted = computed(() => iStore.routes.length > 0);
 
 const router = useRouter();
 const route = useRoute();
-useIndexStore()
-  .getRoutes()
-  .then((routes) => {
-    console.log(routes);
-    nextTick(() => {
-      router.push(route || "/");
-    });
+iStore.getRoutes().then((routes) => {
+  console.log(routes);
+  nextTick(() => {
+    router.push(route || "/");
   });
+});
 </script>
 
 <style></style>

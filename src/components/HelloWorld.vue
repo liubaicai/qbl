@@ -28,12 +28,11 @@
 </template>
 
 <script setup lang="ts">
-import sayHelloWorld from "@/composables/sayHelloWorld";
+import pd from "@/composables/pageData";
+import pt from "@/composables/pager";
 import { ref, toRefs, getCurrentInstance, onMounted } from "vue";
 import { useIndexStore } from "@/stores/index";
 import api from "@/api/index";
-import pd from "@/utils/pageData";
-import pt from "@/utils/pager";
 
 const props = defineProps({
   msg: {
@@ -68,13 +67,11 @@ const instance = getCurrentInstance();
 const global = instance?.appContext.config.globalProperties;
 
 const { msg } = toRefs(props);
-const newMsg = ref(global?.$_.clone(msg.value));
+const newMsg = ref(`${global?.$_.clone(msg.value)}!`);
 
 const iStore = useIndexStore();
 iStore.setPageData("demo_msg", newMsg.value);
-const iMsg = ref(iStore.pageData["demo_msg"]);
-
-const { message } = sayHelloWorld(iMsg);
+const message = ref(iStore.pageData["demo_msg"]);
 
 const onLightThemes = () => {
   window.changeThemes("light");
@@ -85,12 +82,12 @@ const onDarkThemes = () => {
 };
 
 onMounted(() => {
-  console.log(useIndexStore().pageData);
+  console.log(iStore.pageData);
   storeData.value = {
     msg: "Hello World",
   };
   setTimeout(() => {
-    console.log(useIndexStore().pageData);
+    console.log(iStore.pageData);
   }, 3000);
 
   console.log(pageKey);

@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import pd from "@/utils/pageData";
+import pd from "@/composables/pageData";
 const { pageKey } = pd();
 onMounted(() => {
   console.log(pageKey);
