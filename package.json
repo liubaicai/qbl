@@ -12,13 +12,13 @@
   "dependencies": {
     "axios": "^0.27.2",
     "dayjs": "^1.11.3",
-    "element-plus": "^2.2.6",
+    "element-plus": "^2.2.9",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.14",
     "set-value": "^4.1.0",
     "vue": "^3.2.37",
-    "vue-router": "^4.0.16"
+    "vue-router": "^4.1.1"
   },
   "devDependencies": {
     "@babel/types": "^7.18.4",
