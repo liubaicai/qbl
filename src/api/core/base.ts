@@ -1,4 +1,4 @@
-import { request } from "@/api/core/request";
+import { request, instance } from "@/api/core/request";
 import { AxiosRequestHeaders } from "axios";
 
 function cryptoRandomString(e?: number) {
@@ -13,7 +13,7 @@ function cryptoRandomString(e?: number) {
 // 一些基本的http方法和restful定义方法
 class Base {
   rootPoint: string;
-  baseUrl = "/api";
+  baseUrl = instance.defaults.baseURL;
   request = request;
   cryptoRandomString = cryptoRandomString;
 

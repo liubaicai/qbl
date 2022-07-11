@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import routerBuild from "@/pages/main/router/route";
 import { RouteRecordNormalized } from "vue-router";
+import api from "@/api/index";
 
 export const useIndexStore = defineStore("index", {
   state: () => {
@@ -14,12 +15,9 @@ export const useIndexStore = defineStore("index", {
       this.pageData[key] = value;
     },
     getRoutes() {
-      return new Promise((resolve) => {
+      return api.post.detail(1).then(() => {
         const routes = routerBuild();
-        setTimeout(() => {
-          this.routes = routes;
-          resolve(routes);
-        }, 1000);
+        this.routes = routes;
       });
     },
   },

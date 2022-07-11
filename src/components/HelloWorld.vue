@@ -47,9 +47,20 @@ const { filters, pager, onPagerSizeChange, onPagerChange, onSearch, initGetData 
 
 filters.keyword = "";
 
-const getData = (page = 1) => {
+const getData = (page?: number) => {
   console.log(JSON.stringify(filters));
   console.log("loading data:", page);
+  if (!page) {
+    page = pager.currentPage;
+  }
+  const params = {
+    page,
+    pageSize: pager.pageSize,
+    ...filters,
+  };
+  api.post.list(params).then(() => {
+    console.log("pong");
+  });
 };
 initGetData(getData);
 
@@ -74,9 +85,6 @@ const onDarkThemes = () => {
 };
 
 onMounted(() => {
-  api.main.ping().then(() => {
-    console.log("pong");
-  });
   console.log(useIndexStore().pageData);
   storeData.value = {
     msg: "Hello World",

@@ -1,9 +1,7 @@
 import Base from "./core/base";
 
-class Main extends Base {
-  ping = () => this.get("/ping");
-}
+class Post extends Base {}
 
 export default {
-  main: new Main("/"),
+  post: new Post("/posts"),
 };

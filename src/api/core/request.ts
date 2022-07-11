@@ -1,7 +1,7 @@
 import { ElMessage } from "element-plus";
 import service from "./axios";
 import _ from "lodash";
-import { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from "axios";
+import { AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from "axios";
 
 const headers = {
   "Content-Type": "application/json",
@@ -30,4 +30,6 @@ const request = (options: AxiosRequestConfig<any>) => {
   return service(options).then(HTTPSuccessFn).catch(HTTPFailedFn);
 };
 
-export { request };
+const instance: AxiosInstance = service;
+
+export { request, instance };
