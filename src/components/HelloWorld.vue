@@ -12,54 +12,53 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import sayHelloWorld from "@/composables/sayHelloWorld";
-import { ref, toRefs, getCurrentInstance, defineComponent } from "vue";
+import { ref, toRefs, getCurrentInstance, onMounted } from "vue";
 import { useIndexStore } from "@/stores/index";
 import api from "@/api/index";
+import pd from "@/utils/pageData";
 
-export default defineComponent({
-  name: "HelloWorld",
-  props: {
-    msg: String,
+const props = defineProps({
+  msg: {
+    type: String,
+    default: "Hello Vue!",
   },
-  setup(props) {
-    const instance = getCurrentInstance();
-    const global = instance?.appContext.config.globalProperties;
+});
 
-    const { msg } = toRefs(props);
-    const newMsg = ref(global?.$_.clone(msg.value));
+const { storeData } = pd();
 
-    const iStore = useIndexStore();
-    iStore.setPageData("demo_msg", newMsg.value);
-    const iMsg = ref(iStore.pageData["demo_msg"]);
+const instance = getCurrentInstance();
+const global = instance?.appContext.config.globalProperties;
 
-    const { message } = sayHelloWorld(iMsg);
+const { msg } = toRefs(props);
+const newMsg = ref(global?.$_.clone(msg.value));
 
-    return {
-      message,
-    };
-  },
-  mounted() {
-    api.main.ping().then(() => {
-      console.log("pong");
-    });
+const iStore = useIndexStore();
+iStore.setPageData("demo_msg", newMsg.value);
+const iMsg = ref(iStore.pageData["demo_msg"]);
+
+const { message } = sayHelloWorld(iMsg);
+
+const onLightThemes = () => {
+  window.changeThemes("light");
+};
+
+const onDarkThemes = () => {
+  window.changeThemes("dark");
+};
+
+onMounted(() => {
+  api.main.ping().then(() => {
+    console.log("pong");
+  });
+  console.log(useIndexStore().pageData);
+  storeData.value = {
+    msg: "Hello World",
+  };
+  setTimeout(() => {
     console.log(useIndexStore().pageData);
-    this.storeData = {
-      msg: "Hello World",
-    };
-    setTimeout(() => {
-      console.log(useIndexStore().pageData);
-    }, 3000);
-  },
-  methods: {
-    onLightThemes() {
-      window.changeThemes("light");
-    },
-    onDarkThemes() {
-      window.changeThemes("dark");
-    },
-  },
+  }, 3000);
 });
 </script>
 

@@ -4,7 +4,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({});
+<script setup lang="ts">
+import { onMounted } from "vue";
+import pd from "@/utils/pageData";
+const { pageKey } = pd();
+onMounted(() => {
+  console.log(pageKey);
+});
 </script>

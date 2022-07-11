@@ -5,13 +5,12 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { onMounted } from "vue";
 import HelloWorld from "@/components/HelloWorld.vue";
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  components: {
-    HelloWorld,
-  },
+import pd from "@/utils/pageData";
+const { pageKey } = pd();
+onMounted(() => {
+  console.log(pageKey);
 });
 </script>
