@@ -8,8 +8,5 @@ declare module "@vue/runtime-core" {
     $merge: any;
     $dayjs: any;
     $fmtd: any;
-    storeData: any;
-    pageLoading: boolean;
-    saveLoading: boolean;
   }
 }
