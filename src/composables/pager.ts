@@ -19,7 +19,9 @@ export default function () {
   const route = useRoute();
   const router = useRouter();
   const routeName = route.name?.toString() || "";
-  const defaultPageSizeStr = storage.get(`pager:${routeName}`, "10");
+  const defaultPageSizeStr = storage.get(`pager:${routeName}`, {
+    default: "10",
+  });
   const defaultPageSize = parseInt(defaultPageSizeStr, 10);
 
   const filters: any = reactive({});
