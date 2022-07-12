@@ -1,11 +1,20 @@
 import EventEmitter from "events";
 import axios from "axios";
 
+enum Status {
+  SUCCESS = "success",
+  STARTED = "started",
+  ERROR = "error",
+  STOPPED = "stopped",
+}
+
 class UrlMonitor extends EventEmitter {
   url: string;
   interval: number;
   timeout: number;
   stus: string;
+
+  Status = Status;
 
   intervalInstance: NodeJS.Timer | null = null;
 
@@ -19,7 +28,7 @@ class UrlMonitor extends EventEmitter {
 
   start = () => {
     const that = this;
-    this.emit("change", "started");
+    this.emit("change", this.Status.STARTED);
     this.intervalInstance = setInterval(() => {
       const service = axios.create({
         timeout: this.timeout,
@@ -27,16 +36,16 @@ class UrlMonitor extends EventEmitter {
       service
         .get(this.url)
         .then(function () {
-          that.emit("change", "success");
+          that.emit("change", that.Status.SUCCESS);
         })
         .catch(function () {
-          that.emit("change", "error");
+          that.emit("change", that.Status.ERROR);
         });
     }, this.interval);
   };
 
   stop = () => {
-    this.emit("change", "stopped");
+    this.emit("change", this.Status.STOPPED);
     if (this.intervalInstance) clearInterval(this.intervalInstance);
   };
 }

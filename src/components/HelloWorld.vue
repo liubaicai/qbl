@@ -43,6 +43,9 @@ const monitor = new UrlMonitor({
 });
 monitor.on("change", (e) => {
   console.log(e);
+  if (e === monitor.Status.SUCCESS) {
+    monitor.stop();
+  }
 });
 monitor.start();
 
