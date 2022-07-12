@@ -21,5 +21,12 @@ module.exports = {
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
     "vue/multi-word-component-names": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-this-alias": [
+      "error",
+      {
+        allowDestructuring: true, // Allow `const { props, state } = this`; false by default
+        allowedNames: ["that"], // Allow `const that= this`; `[]` by default
+      },
+    ],
   },
 };
