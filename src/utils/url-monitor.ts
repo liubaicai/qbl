@@ -7,7 +7,7 @@ class UrlMonitor extends EventEmitter {
   timeout: number;
   stus: string;
 
-  intervalInstabce: NodeJS.Timer | null = null;
+  intervalInstance: NodeJS.Timer | null = null;
 
   constructor(options: { url: string; interval?: number; timeout?: number }) {
     super();
@@ -20,7 +20,7 @@ class UrlMonitor extends EventEmitter {
   start = () => {
     const that = this;
     this.emit("change", "started");
-    this.intervalInstabce = setInterval(() => {
+    this.intervalInstance = setInterval(() => {
       const service = axios.create({
         timeout: this.timeout,
       });
@@ -37,7 +37,7 @@ class UrlMonitor extends EventEmitter {
 
   stop = () => {
     this.emit("change", "stopped");
-    if (this.intervalInstabce) clearInterval(this.intervalInstabce);
+    if (this.intervalInstance) clearInterval(this.intervalInstance);
   };
 }
 
