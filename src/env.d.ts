@@ -9,5 +9,5 @@ declare module "*.vue" {
 }
 
 declare interface Window {
-  changeThemes: any;
+  changeThemes: (name?: string) => void;
 }
