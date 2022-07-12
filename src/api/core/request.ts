@@ -16,7 +16,7 @@ const messageForFailed = _.debounce((e) => {
 }, 100);
 
 const HTTPSuccessFn = (res: AxiosResponse<any, any>) => {
-  return res;
+  return res.data;
 };
 
 const HTTPFailedFn = (err: any) => {

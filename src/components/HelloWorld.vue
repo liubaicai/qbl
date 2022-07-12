@@ -8,7 +8,7 @@
       <el-button @click="onLightThemes">light</el-button>
       <el-button @click="onDarkThemes">dark</el-button>
     </div>
-    <div>{{ $fmtd($_.now()) }}</div>
+    <div>{{ $fmtd(_.now()) }}</div>
   </div>
 
   <el-input v-model="filters.keyword" placeholder="请输入内容" />
@@ -30,7 +30,9 @@
 <script setup lang="ts">
 import pd from "@/composables/pageData";
 import pt from "@/composables/pager";
-import { ref, toRefs, getCurrentInstance, onMounted } from "vue";
+import { _ } from "@/composables/plugins";
+
+import { ref, toRefs, onMounted } from "vue";
 import { useIndexStore } from "@/stores/index";
 import api from "@/api/index";
 
@@ -41,33 +43,33 @@ const props = defineProps({
   },
 });
 
-const { pageKey, storeData } = pd();
+const { storeData } = pd();
 const { filters, pager, onPagerSizeChange, onPagerChange, onSearch, initGetData } = pt();
 
 filters.keyword = "";
 
 const getData = (page?: number) => {
   console.log(JSON.stringify(filters));
-  console.log("loading data:", page);
   if (!page) {
     page = pager.currentPage;
   }
+  console.log("loading data:", page);
   const params = {
     page,
     pageSize: pager.pageSize,
     ...filters,
   };
-  api.post.list(params).then(() => {
-    console.log("pong");
+  api.post.list(params).then((res) => {
+    console.log(res);
   });
 };
 initGetData(getData);
 
-const instance = getCurrentInstance();
-const global = instance?.appContext.config.globalProperties;
+// const instance = getCurrentInstance();
+// const global = instance?.appContext.config.globalProperties;
 
 const { msg } = toRefs(props);
-const newMsg = ref(`${global?.$_.clone(msg.value)}!`);
+const newMsg = ref(`${_.clone(msg.value)}!`);
 
 const iStore = useIndexStore();
 iStore.setPageData("demo_msg", newMsg.value);
@@ -90,7 +92,6 @@ onMounted(() => {
     console.log(iStore.pageData);
   }, 3000);
 
-  console.log(pageKey);
   pager.total = 263;
   getData();
 });
