@@ -35,7 +35,7 @@ import { _ } from "@/composables/plugins";
 import { ref, toRefs, onMounted } from "vue";
 import { useIndexStore } from "@/stores/index";
 import api from "@/api/index";
-import UrlMonitor from "@/utils/url-monitor.js";
+import UrlMonitor from "@/utils/url-monitor";
 
 const monitor = new UrlMonitor({
   url: "https://jsonplaceholder.typicode.com/todos/1",
