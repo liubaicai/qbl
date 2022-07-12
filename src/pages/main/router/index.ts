@@ -16,7 +16,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const iStore = useIndexStore();
-  if (iStore.auth || !to.meta.auth) {
+  if (iStore.auth || to.meta.auth !== false) {
     NProgress.start();
     next();
   } else {

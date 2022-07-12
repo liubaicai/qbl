@@ -6,11 +6,11 @@ import error from "./routes/error";
 import home from "./routes/home";
 import about from "./routes/about";
 
-const routes = [...home, ...about, ...auth, ...error];
+const routes: RouteItem[] = [...home, ...about, ...auth, ...error];
 
 export default function () {
   routes.forEach((route) => {
     router.addRoute(route);
   });
-  return router.getRoutes();
+  return routes;
 }

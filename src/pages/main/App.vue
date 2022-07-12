@@ -1,8 +1,9 @@
 <template>
   <div v-if="isRouted">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link style="margin: 10px" v-for="(menu, index) in menus" :key="index" :to="menu.path">{{
+        menu.title
+      }}</router-link>
     </div>
     <router-view></router-view>
   </div>
@@ -19,15 +20,19 @@
 import { useRouter, useRoute } from "vue-router";
 import { nextTick, computed } from "vue";
 import { useIndexStore } from "@/stores/index";
+import menuBuilder from "@/utils/menu-builder";
 
 const iStore = useIndexStore();
 
 const isRouted = computed(() => iStore.routes.length > 0);
+const menus = computed(() => iStore.menus);
 
 const router = useRouter();
 const route = useRoute();
 iStore.getRoutes().then((routes) => {
-  console.log(routes);
+  const menus = menuBuilder(routes);
+  iStore.setMenus(menus);
+  console.log(routes, menus);
   nextTick(() => {
     router.push(route || "/");
   });
