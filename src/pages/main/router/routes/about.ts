@@ -5,6 +5,6 @@ export default [
     meta: {
       auth: true,
     },
-    component: () => import("@/page_main/views/about/About.vue"),
+    component: () => import("@/pages/main/views/about/About.vue"),
   },
 ];
