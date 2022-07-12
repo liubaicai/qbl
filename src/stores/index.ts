@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import routerBuild from "@/pages/main/router/route";
+import routerBuild from "@/page_main/router/route";
 import { RouteRecordNormalized } from "vue-router";
 import api from "@/api/index";
 
@@ -8,6 +8,7 @@ export const useIndexStore = defineStore("index", {
     return {
       pageData: Object.create(null),
       routes: [] as RouteRecordNormalized[],
+      auth: false,
     };
   },
   actions: {
@@ -17,6 +18,7 @@ export const useIndexStore = defineStore("index", {
     getRoutes() {
       return api.post.detail(1).then(() => {
         const routes = routerBuild();
+        this.auth = true;
         this.routes = routes;
       });
     },

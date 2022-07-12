@@ -1,5 +1,6 @@
 import NProgress from "nprogress";
 import { createRouter, createWebHistory } from "vue-router";
+import { useIndexStore } from "@/stores/index";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -14,8 +15,13 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  NProgress.start();
-  next();
+  const iStore = useIndexStore();
+  if (iStore.auth || !to.meta.auth) {
+    NProgress.start();
+    next();
+  } else {
+    next("/auth");
+  }
 });
 
 router.afterEach(() => {
