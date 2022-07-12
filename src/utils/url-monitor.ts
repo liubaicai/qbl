@@ -2,10 +2,10 @@ import EventEmitter from "events";
 import axios from "axios";
 
 enum Status {
-  SUCCESS = "success",
-  STARTED = "started",
-  ERROR = "error",
-  STOPPED = "stopped",
+  SUCCESS = "SUCCESS",
+  STARTED = "STARTED",
+  ERROR = "ERROR",
+  STOPPED = "STOPPED",
 }
 
 class UrlMonitor extends EventEmitter {
