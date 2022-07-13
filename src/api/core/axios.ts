@@ -13,7 +13,7 @@ service.interceptors.request.use(
   (error) => {
     console.error(error);
     return Promise.reject(error);
-  },
+  }
 );
 
 service.interceptors.response.use((res) => {

@@ -1,4 +1,4 @@
-import { App } from "vue";
+import type { App } from "vue";
 import SvgIcon from "./SvgIcon.vue";
 
 const install = (app: App<Element>) => {

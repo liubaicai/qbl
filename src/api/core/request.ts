@@ -1,7 +1,7 @@
 import { ElMessage } from "element-plus";
 import service from "./axios";
 import _ from "lodash";
-import { AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from "axios";
+import type { AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from "axios";
 
 const headers = {
   "Content-Type": "application/json",

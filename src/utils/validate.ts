@@ -1,6 +1,7 @@
+/* eslint-disable max-len */
 // 一些验证表单的方法
 
-export function validateEmpty(rule: any, value: string, callback: (arg0?: Error | undefined) => void) {
+export function validateEmpty(rule: unknown, value: string, callback: (arg0?: Error | undefined) => void) {
   if (!value) {
     callback(new Error("该字段不能为空"));
   } else {
@@ -8,7 +9,7 @@ export function validateEmpty(rule: any, value: string, callback: (arg0?: Error 
   }
 }
 
-export function validateIP(rule: any, value: string, callback: (arg0?: Error | undefined) => void) {
+export function validateIP(rule: unknown, value: string, callback: (arg0?: Error | undefined) => void) {
   if (!value) {
     callback();
   } else {
@@ -22,7 +23,7 @@ export function validateIP(rule: any, value: string, callback: (arg0?: Error | u
   }
 }
 
-export function validateCIDR(rule: any, value: string, callback: (arg0?: Error | undefined) => void) {
+export function validateCIDR(rule: unknown, value: string, callback: (arg0?: Error | undefined) => void) {
   if (!value) {
     callback();
   } else {
@@ -36,7 +37,7 @@ export function validateCIDR(rule: any, value: string, callback: (arg0?: Error |
   }
 }
 
-export function validateGateway(rule: any, value: string, callback: (arg0?: Error | undefined) => void) {
+export function validateGateway(rule: unknown, value: string, callback: (arg0?: Error | undefined) => void) {
   if (!value) {
     callback();
   } else {
@@ -50,7 +51,7 @@ export function validateGateway(rule: any, value: string, callback: (arg0?: Erro
   }
 }
 
-export function validateMask(rule: any, value: string, callback: (arg0?: Error | undefined) => void) {
+export function validateMask(rule: unknown, value: string, callback: (arg0?: Error | undefined) => void) {
   if (!value) {
     callback();
   } else {
@@ -64,7 +65,7 @@ export function validateMask(rule: any, value: string, callback: (arg0?: Error |
   }
 }
 
-export function validatePhone(rule: any, value: string, callback: (arg0?: Error | undefined) => void) {
+export function validatePhone(rule: unknown, value: string, callback: (arg0?: Error | undefined) => void) {
   const reg = /^[1][3-9][0-9]{9}$/;
   if (!value) {
     callback();
@@ -75,7 +76,7 @@ export function validatePhone(rule: any, value: string, callback: (arg0?: Error 
   }
 }
 
-export function validateIdNo(rule: any, value: string, callback: (arg0?: Error | undefined) => void) {
+export function validateIdNo(rule: unknown, value: string, callback: (arg0?: Error | undefined) => void) {
   const reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
   if (!value) {
     callback();
@@ -86,7 +87,7 @@ export function validateIdNo(rule: any, value: string, callback: (arg0?: Error |
   }
 }
 
-export function validateEmail(rule: any, value: string, callback: (arg0?: Error | undefined) => void) {
+export function validateEmail(rule: unknown, value: string, callback: (arg0?: Error | undefined) => void) {
   // eslint-disable-next-line no-useless-escape
   const reg = /^([A-Za-z0-9_\-\.\u4e00-\u9fa5])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,8})$/;
   if (!value) {
@@ -98,7 +99,7 @@ export function validateEmail(rule: any, value: string, callback: (arg0?: Error 
   }
 }
 
-export function validateUrl(rule: any, value: string, callback: (arg0?: Error | undefined) => void) {
+export function validateUrl(rule: unknown, value: string, callback: (arg0?: Error | undefined) => void) {
   const urlregex =
     /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
   if (!value) {
@@ -110,7 +111,7 @@ export function validateUrl(rule: any, value: string, callback: (arg0?: Error | 
   }
 }
 
-export function validatePort(rule: any, value: string, callback: (arg0?: Error | undefined) => void) {
+export function validatePort(rule: unknown, value: string, callback: (arg0?: Error | undefined) => void) {
   const regex = /^([0-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/;
   if (!value) {
     callback();
@@ -121,7 +122,7 @@ export function validatePort(rule: any, value: string, callback: (arg0?: Error |
   }
 }
 
-export function validateAccount(rule: any, value: string, callback: (arg0?: Error | undefined) => void) {
+export function validateAccount(rule: unknown, value: string, callback: (arg0?: Error | undefined) => void) {
   if (!value) {
     callback();
   }
@@ -132,7 +133,7 @@ export function validateAccount(rule: any, value: string, callback: (arg0?: Erro
   }
 }
 
-export function validateUserName(rule: any, value: string, callback: (arg0?: Error | undefined) => void) {
+export function validateUserName(rule: unknown, value: string, callback: (arg0?: Error | undefined) => void) {
   if (!value) {
     callback();
   }
@@ -143,7 +144,7 @@ export function validateUserName(rule: any, value: string, callback: (arg0?: Err
   }
 }
 
-export function validateVlanId(rule: any, value: number, callback: (arg0?: Error | undefined) => void) {
+export function validateVlanId(rule: unknown, value: number, callback: (arg0?: Error | undefined) => void) {
   if (value === null) {
     callback();
   } else if (!Number.isInteger(value)) {

@@ -1,3 +1,6 @@
+/* eslint-env node */
+require("@rushstack/eslint-patch/modern-module-resolution");
+
 module.exports = {
   root: true,
   env: {
@@ -8,14 +11,10 @@ module.exports = {
   parser: "vue-eslint-parser", // 解析 .vue 文件
   extends: [
     "plugin:vue/vue3-essential",
-    "plugin:prettier/recommended",
-    "prettier",
-    "plugin:@typescript-eslint/recommended",
+    "eslint:recommended",
+    "@vue/eslint-config-typescript/recommended",
+    "@vue/eslint-config-prettier",
   ],
-  plugins: ["@typescript-eslint"],
-  parserOptions: {
-    parser: "@typescript-eslint/parser", // 解析 .ts 文件
-  },
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",

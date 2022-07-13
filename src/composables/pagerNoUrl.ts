@@ -49,7 +49,7 @@ export default function () {
     },
     {
       deep: true,
-    },
+    }
   );
 
   const onSearch = _.debounce(function () {

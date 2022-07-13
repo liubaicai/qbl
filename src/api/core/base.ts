@@ -1,5 +1,5 @@
 import { request, instance } from "@/api/core/request";
-import { AxiosRequestHeaders } from "axios";
+import type { AxiosRequestHeaders } from "axios";
 
 function cryptoRandomString(e?: number) {
   e = e || 32;

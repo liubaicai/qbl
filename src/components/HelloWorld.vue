@@ -38,7 +38,7 @@ import api from "@/api/index";
 import UrlMonitor from "@/utils/url-monitor";
 
 const monitor = new UrlMonitor({
-  url: "https://jsonplaceholder.typicode.com/todos/1",
+  url: "http://jsonplaceholder.typicode.com/todos/1",
   interval: 10000,
 });
 monitor.on("change", (e) => {
@@ -115,10 +115,12 @@ onMounted(() => {
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
