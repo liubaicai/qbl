@@ -1,5 +1,5 @@
 <template>
-  <svg :class="svgClass" v-bind="$attrs" :style="{ color: color }">
+  <svg :class="svgClass" v-bind="$attrs" :style="{ color: color }" aria-hidden="true">
     <use :xlink:href="iconName" />
   </svg>
 </template>
@@ -14,7 +14,7 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: "",
+    default: "#333",
   },
 });
 

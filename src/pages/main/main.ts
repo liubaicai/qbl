@@ -5,7 +5,7 @@ import { createPinia } from "pinia";
 import plugins from "@/plugins";
 import components from "@/components";
 
-import "vite-plugin-svg-icons/register";
+import "virtual:svg-icons-register";
 
 import "@/assets/styles/index.scss";
 import "element-plus/es/components/message/style/css";

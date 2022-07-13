@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import legacy from "@vitejs/plugin-legacy";
 import { resolve } from "path";
-import viteSvgIcons from "vite-plugin-svg-icons";
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
@@ -37,10 +37,8 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()],
     }),
-    viteSvgIcons({
-      // 指定需要缓存的图标文件夹
+    createSvgIconsPlugin({
       iconDirs: [resolve(process.cwd(), "src/assets/icons/svg")],
-      // 指定symbolId格式
       symbolId: "icon-[dir]-[name]",
     }),
     visualizer(),
