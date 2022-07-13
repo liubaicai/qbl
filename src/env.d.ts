@@ -11,23 +11,3 @@ declare module "*.vue" {
 declare interface Window {
   changeThemes: (name?: string) => void;
 }
-
-declare class RouteItem {
-  path: string;
-  name: string;
-  meta: {
-    menu?: boolean;
-    title?: string;
-    icon?: string;
-  };
-  component: () => Promise<any>;
-  children?: RouteItem[];
-}
-
-declare class MenuItem {
-  name: string;
-  title: string;
-  path: string;
-  icon: string;
-  children?: MenuItem[];
-}
