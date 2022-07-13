@@ -1,8 +1,9 @@
 import { reactive, onBeforeMount, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute, useRouter, type LocationQueryRaw, type LocationQueryValue } from "vue-router";
 import _ from "lodash";
 import { storage } from "@/utils/storage";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const tryParseJson = (str: any) => {
   try {
     const type = typeof JSON.parse(str);
@@ -24,7 +25,7 @@ export default function () {
   });
   const defaultPageSize = parseInt(defaultPageSizeStr, 10);
 
-  const filters: any = reactive({});
+  const filters: LocationQueryRaw = reactive({});
   const pager = reactive({
     total: 0,
     pageSize: defaultPageSize,
@@ -45,8 +46,8 @@ export default function () {
     });
   };
 
-  const pushToQuery = (obj: any) => {
-    const query = {
+  const pushToQuery = (obj: LocationQueryRaw) => {
+    const query: LocationQueryRaw = {
       ...route.query,
       ...obj,
     };
@@ -55,9 +56,9 @@ export default function () {
 
   watch(
     () => route.query,
-    (query: any) => {
-      const pageSize = parseInt(query.pageSize, 10);
-      const page = parseInt(query.page, 10);
+    (query: Record<string, LocationQueryValue | LocationQueryValue[]>) => {
+      const pageSize = parseInt(query.pageSize?.toString() || "", 10);
+      const page = parseInt(query.page?.toString() || "", 10);
       if (pageSize) {
         pager.pageSize = pageSize;
       }

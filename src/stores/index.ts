@@ -12,7 +12,7 @@ export const useIndexStore = defineStore("index", {
     };
   },
   actions: {
-    setPageData(key: string, value: any) {
+    setPageData(key: string, value: unknown) {
       this.pageData[key] = value;
     },
     getRoutes(): Promise<RouteItem[]> {
@@ -23,7 +23,7 @@ export const useIndexStore = defineStore("index", {
         return routes;
       });
     },
-    setMenus(menus: any[]) {
+    setMenus(menus: MenuItem[]) {
       this.menus = menus;
     },
   },

@@ -1,7 +1,7 @@
 import { ElMessage } from "element-plus";
 import service from "./axios";
 import _ from "lodash";
-import type { AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from "axios";
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from "axios";
 
 const headers = {
   "Content-Type": "application/json",
@@ -15,19 +15,17 @@ const messageForFailed = _.debounce((e) => {
   });
 }, 100);
 
-const HTTPSuccessFn = (res: AxiosResponse<any, any>) => {
-  return res.data;
-};
-
-const HTTPFailedFn = (err: any) => {
-  console.error(err);
-  messageForFailed(err?.message || err?.msg || err);
-  return Promise.reject(err);
-};
-
-const request = (options: AxiosRequestConfig<any>) => {
+const request = <T, D>(options: AxiosRequestConfig<D>) => {
   options.headers = Object.assign(headers, options.headers);
-  return service(options).then(HTTPSuccessFn).catch(HTTPFailedFn);
+  return service(options)
+    .then((res: AxiosResponse<T, D>) => {
+      return res.data;
+    })
+    .catch((err: Error | AxiosError) => {
+      console.error(err);
+      messageForFailed(err?.message || err);
+      return Promise.reject(err);
+    });
 };
 
 const instance: AxiosInstance = service;

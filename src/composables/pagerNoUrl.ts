@@ -1,12 +1,15 @@
 import { reactive, watch } from "vue";
 import _ from "lodash";
+import type { LocationQueryRaw } from "vue-router";
 
 export default function () {
-  const localRoute: any = reactive({
+  const localRoute: {
+    query: LocationQueryRaw;
+  } = reactive({
     query: {},
   });
 
-  const filters: any = reactive({});
+  const filters: LocationQueryRaw = reactive({});
   const pager = reactive({
     total: 0,
     pageSize: 10,
@@ -26,7 +29,7 @@ export default function () {
     });
   };
 
-  const pushToQuery = (obj: any) => {
+  const pushToQuery = (obj: LocationQueryRaw) => {
     localRoute.query = {
       ...localRoute.query,
       ...obj,
@@ -35,10 +38,10 @@ export default function () {
 
   watch(
     () => localRoute.query,
-    (query: any) => {
+    (query: LocationQueryRaw) => {
       console.log(query);
-      const pageSize = parseInt(query.pageSize, 10);
-      const page = parseInt(query.page, 10);
+      const pageSize = parseInt(query.pageSize?.toString() || "", 10);
+      const page = parseInt(query.page?.toString() || "", 10);
       if (pageSize) {
         pager.pageSize = pageSize;
       }

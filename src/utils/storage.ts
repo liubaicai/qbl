@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // 存储的相关方法
 
 declare class ExpireData {

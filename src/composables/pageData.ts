@@ -9,10 +9,10 @@ export default function () {
   const pageKey = route.name as string;
   const iStore = useIndexStore();
   const storeData = computed({
-    get: function (): any {
+    get: function (): unknown {
       return iStore.pageData[pageKey];
     },
-    set: function (val: any) {
+    set: function (val: unknown) {
       const oldObj = iStore.pageData[pageKey];
       if (oldObj) {
         const oldStr = JSON.stringify(oldObj);
