@@ -755,7 +755,7 @@
         <h1>404</h1>
         <p>您没有权限或者页面不存在！</p>
         <router-link :to="{ path: '/' }">
-          <el-button type="text">回到首页</el-button>
+          <el-button link>回到首页</el-button>
         </router-link>
       </div>
     </div>
