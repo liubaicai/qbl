@@ -11,8 +11,12 @@
     <div>{{ $fmtd(_.now()) }}</div>
   </div>
 
-  <el-input v-model="filters.keyword" placeholder="请输入内容" />
-  <el-button type="primary" @click="onSearch">搜索</el-button>
+  <el-form :model="filters" :rules="validateRules">
+    <el-form-item prop="keyword">
+      <el-input v-model="filters.keyword" placeholder="请输入内容" />
+    </el-form-item>
+    <el-button type="primary" @click="onSearch">搜索</el-button>
+  </el-form>
 
   <el-pagination
     background
@@ -37,6 +41,8 @@ import { useIndexStore } from "@/stores/index";
 import api from "@/api/index";
 import UrlMonitor from "@/utils/url-monitor";
 
+import { type ValidateRules, validateEmpty } from "@/utils/validate";
+
 const monitor = new UrlMonitor({
   url: "http://jsonplaceholder.typicode.com/todos/1",
   interval: 10000,
@@ -60,6 +66,10 @@ const { storeData } = pd();
 const { filters, pager, onPagerSizeChange, onPagerChange, onSearch, initGetData } = pt();
 
 filters.keyword = "";
+
+const validateRules: ValidateRules = {
+  keyword: [{ validator: validateEmpty }],
+};
 
 const getData = (page?: number) => {
   console.log(JSON.stringify(filters));
