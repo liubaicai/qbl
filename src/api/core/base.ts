@@ -10,10 +10,6 @@ function cryptoRandomString(e?: number) {
   return n;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type RequestDataType = any;
-type RequestParamsType = Record<string, string | number>;
-
 // 一些基本的http方法和restful定义方法
 class Base {
   rootPoint: string;
