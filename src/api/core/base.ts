@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { request, instance } from "@/api/core/request";
 import type { AxiosRequestHeaders } from "axios";
 
@@ -12,6 +10,10 @@ function cryptoRandomString(e?: number) {
   return n;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type RequestDataType = any;
+type RequestParamsType = Record<string, string | number>;
+
 // 一些基本的http方法和restful定义方法
 class Base {
   rootPoint: string;
@@ -23,7 +25,7 @@ class Base {
     this.rootPoint = rootPoint;
   }
 
-  get = (url: string, params?: any, headers?: AxiosRequestHeaders) =>
+  get = (url: string, params?: RequestParamsType, headers?: AxiosRequestHeaders) =>
     this.request({
       url,
       method: "get",
@@ -31,7 +33,7 @@ class Base {
       headers,
     });
 
-  post = (url: string, data: any, params?: any, headers?: AxiosRequestHeaders) =>
+  post = (url: string, data: RequestDataType, params?: RequestParamsType, headers?: AxiosRequestHeaders) =>
     this.request({
       url,
       method: "post",
@@ -40,7 +42,7 @@ class Base {
       headers,
     });
 
-  put = (url: string, data: any, params?: any, headers?: AxiosRequestHeaders) =>
+  put = (url: string, data: RequestDataType, params?: RequestParamsType, headers?: AxiosRequestHeaders) =>
     this.request({
       url,
       method: "put",
@@ -49,7 +51,7 @@ class Base {
       headers,
     });
 
-  delete = (url: string, params?: any, headers?: AxiosRequestHeaders) =>
+  delete = (url: string, params?: RequestParamsType, headers?: AxiosRequestHeaders) =>
     this.request({
       url,
       method: "delete",
@@ -57,28 +59,28 @@ class Base {
       headers,
     });
 
-  list = (params?: any) =>
+  list = (params?: RequestParamsType) =>
     this.request({
       url: this.rootPoint,
       method: "get",
       params,
     });
 
-  create = (data: any) =>
+  create = (data: RequestDataType) =>
     this.request({
       url: this.rootPoint,
       method: "post",
       data,
     });
 
-  detail = (id: string | number, params?: any) =>
+  detail = (id: string | number, params?: RequestParamsType) =>
     this.request({
       url: `${this.rootPoint}/${id}`,
       method: "get",
       params,
     });
 
-  edit = (data: any) =>
+  edit = (data: RequestDataType) =>
     this.request({
       url: this.rootPoint,
       method: "put",
