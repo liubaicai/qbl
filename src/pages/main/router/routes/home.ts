@@ -1,4 +1,4 @@
-export default [
+const routes: RouteItem[] = [
   {
     path: "/",
     name: "home",
@@ -9,3 +9,5 @@ export default [
     component: () => import("@/pages/main/views/home/Home.vue"),
   },
 ];
+
+export default routes;

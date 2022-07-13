@@ -1,4 +1,4 @@
-export default [
+const routes: RouteItem[] = [
   {
     path: "/about",
     name: "about",
@@ -29,3 +29,5 @@ export default [
     ],
   },
 ];
+
+export default routes;

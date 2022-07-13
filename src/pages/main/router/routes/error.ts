@@ -1,4 +1,4 @@
-export default [
+const routes: RouteItem[] = [
   {
     path: "/:pathMatch(.*)",
     name: "404",
@@ -6,3 +6,5 @@ export default [
     component: () => import("@/pages/main/views/error/NotFound.vue"),
   },
 ];
+
+export default routes;

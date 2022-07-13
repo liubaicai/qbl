@@ -1,4 +1,4 @@
-export default [
+const routes: RouteItem[] = [
   {
     path: "/auth",
     name: "auth",
@@ -8,3 +8,5 @@ export default [
     component: () => import("@/pages/main/views/auth/Login.vue"),
   },
 ];
+
+export default routes;
