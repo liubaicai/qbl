@@ -5,6 +5,7 @@ import api from "@/api/index";
 export const useIndexStore = defineStore("index", {
   state: () => {
     return {
+      logo: "",
       pageData: Object.create(null),
       routes: [] as RouteItem[],
       auth: false,
