@@ -1,5 +1,6 @@
 import { request, instance } from "@/api/core/request";
 import type { AxiosRequestHeaders } from "axios";
+import type { RequestDataType, RequestParamsType } from "../models";
 
 function cryptoRandomString(e?: number) {
   e = e || 32;
@@ -21,16 +22,16 @@ class Base {
     this.rootPoint = rootPoint;
   }
 
-  get = (url: string, params?: RequestParamsType, headers?: AxiosRequestHeaders) =>
-    this.request({
+  get = <T>(url: string, params?: RequestParamsType, headers?: AxiosRequestHeaders) =>
+    this.request<T>({
       url,
       method: "get",
       params,
       headers,
     });
 
-  post = (url: string, data: RequestDataType, params?: RequestParamsType, headers?: AxiosRequestHeaders) =>
-    this.request({
+  post = <T>(url: string, data: RequestDataType, params?: RequestParamsType, headers?: AxiosRequestHeaders) =>
+    this.request<T>({
       url,
       method: "post",
       data,
@@ -38,8 +39,8 @@ class Base {
       headers,
     });
 
-  put = (url: string, data: RequestDataType, params?: RequestParamsType, headers?: AxiosRequestHeaders) =>
-    this.request({
+  put = <T>(url: string, data: RequestDataType, params?: RequestParamsType, headers?: AxiosRequestHeaders) =>
+    this.request<T>({
       url,
       method: "put",
       data,
@@ -47,44 +48,44 @@ class Base {
       headers,
     });
 
-  delete = (url: string, params?: RequestParamsType, headers?: AxiosRequestHeaders) =>
-    this.request({
+  delete = <T>(url: string, params?: RequestParamsType, headers?: AxiosRequestHeaders) =>
+    this.request<T>({
       url,
       method: "delete",
       params,
       headers,
     });
 
-  list = (params?: RequestParamsType) =>
-    this.request({
+  list = <T>(params?: RequestParamsType) =>
+    this.request<T>({
       url: this.rootPoint,
       method: "get",
       params,
     });
 
-  create = (data: RequestDataType) =>
-    this.request({
+  create = <T>(data: RequestDataType) =>
+    this.request<T>({
       url: this.rootPoint,
       method: "post",
       data,
     });
 
-  detail = (id: string | number, params?: RequestParamsType) =>
-    this.request({
+  detail = <T>(id: string | number, params?: RequestParamsType) =>
+    this.request<T>({
       url: `${this.rootPoint}/${id}`,
       method: "get",
       params,
     });
 
-  edit = (data: RequestDataType) =>
-    this.request({
+  edit = <T>(data: RequestDataType) =>
+    this.request<T>({
       url: this.rootPoint,
       method: "put",
       data,
     });
 
-  del = (id: string | number) =>
-    this.request({
+  del = <T>(id: string | number) =>
+    this.request<T>({
       url: `${this.rootPoint}/${id}`,
       method: "delete",
     });

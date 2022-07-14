@@ -32,7 +32,6 @@ const route = useRoute();
 iStore.getRoutes().then((routes) => {
   const menus = menuBuilder(routes);
   iStore.setMenus(menus);
-  console.log(routes, menus);
   nextTick(() => {
     router.push(route || "/");
   });

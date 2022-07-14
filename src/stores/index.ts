@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import routerBuild from "@/pages/main/router/route";
-import api from "@/api/index";
+import { logApi } from "@/api/index";
 
 export const useIndexStore = defineStore("index", {
   state: () => {
@@ -17,7 +17,7 @@ export const useIndexStore = defineStore("index", {
       this.pageData[key] = value;
     },
     getRoutes(): Promise<RouteItem[]> {
-      return api.post.detail(1).then(() => {
+      return logApi.test().then(() => {
         const routes = routerBuild();
         this.auth = true;
         this.routes = routes;

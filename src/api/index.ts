@@ -1,7 +1,3 @@
-import Base from "./core/base";
+import logApi from "./modules/log";
 
-class Post extends Base {}
-
-export default {
-  post: new Post("/posts"),
-};
+export { logApi };

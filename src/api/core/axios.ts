@@ -2,7 +2,7 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 const service = axios.create({
-  baseURL: "http://jsonplaceholder.typicode.com",
+  baseURL: "/mock",
   timeout: 600000,
 });
 

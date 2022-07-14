@@ -22,6 +22,3 @@ declare class MenuItem {
   icon: string;
   children?: MenuItem[];
 }
-
-type RequestDataType = any;
-type RequestParamsType = Record<string, string | number>;

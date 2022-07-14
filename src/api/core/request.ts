@@ -2,6 +2,7 @@ import { ElMessage } from "element-plus";
 import service from "./axios";
 import _ from "lodash";
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from "axios";
+import type { RequestDataType } from "../models";
 
 const headers = {
   "Content-Type": "application/json",
@@ -15,10 +16,10 @@ const messageForFailed = _.debounce((e) => {
   });
 }, 100);
 
-const request = <T, D>(options: AxiosRequestConfig<D>) => {
+const request = <T>(options: AxiosRequestConfig<RequestDataType>) => {
   options.headers = Object.assign(headers, options.headers);
   return service(options)
-    .then((res: AxiosResponse<T, D>) => {
+    .then((res: AxiosResponse<T, RequestDataType>) => {
       return res.data;
     })
     .catch((err: Error | AxiosError) => {

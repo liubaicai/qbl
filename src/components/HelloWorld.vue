@@ -8,7 +8,6 @@
       <el-button @click="onLightThemes">light</el-button>
       <el-button @click="onDarkThemes">dark</el-button>
     </div>
-    <div>{{ $fmtd(_.now()) }}</div>
   </div>
 
   <el-form :model="filters" :rules="validateRules">
@@ -17,6 +16,16 @@
     </el-form-item>
     <el-button type="primary" @click="onSearch">搜索</el-button>
   </el-form>
+
+  <el-table :data="storeData" stripe style="width: 100%">
+    <el-table-column prop="username" label="姓名" width="180"></el-table-column>
+    <el-table-column prop="location" label="位置" width="180"></el-table-column>
+    <el-table-column prop="timestamp" label="时间">
+      <template #default="scope">
+        {{ $fmtd(scope.row.timestamp) }}
+      </template>
+    </el-table-column>
+  </el-table>
 
   <el-pagination
     background
@@ -38,13 +47,13 @@ import { _ } from "@/composables/plugins";
 
 import { ref, toRefs, onMounted } from "vue";
 import { useIndexStore } from "@/stores/index";
-import api from "@/api/index";
+import { logApi } from "@/api/index";
 import UrlMonitor from "@/utils/url-monitor";
 
 import { type ValidateRules, validateEmpty } from "@/utils/validate";
 
 const monitor = new UrlMonitor({
-  url: "http://jsonplaceholder.typicode.com/todos/1",
+  url: "/mock/log.json",
   interval: 10000,
 });
 monitor.on("change", (e) => {
@@ -72,18 +81,17 @@ const validateRules: ValidateRules = {
 };
 
 const getData = (page?: number) => {
-  console.log(JSON.stringify(filters));
   if (!page) {
     page = pager.currentPage;
   }
-  console.log("loading data:", page);
   const params = {
     page,
     pageSize: pager.pageSize,
     ...filters,
   };
-  api.post.list(params).then((res) => {
-    console.log(res);
+  logApi.test(params).then((resp) => {
+    storeData.value = resp.data || [];
+    pager.total = resp.total || 0;
   });
 };
 initGetData(getData);
@@ -107,15 +115,9 @@ const onDarkThemes = () => {
 };
 
 onMounted(() => {
-  console.log(iStore.pageData);
-  storeData.value = {
-    msg: "Hello World",
-  };
   setTimeout(() => {
     console.log(iStore.pageData);
   }, 3000);
-
-  pager.total = 263;
   getData();
 });
 </script>
