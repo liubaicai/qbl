@@ -1,6 +1,7 @@
 import { reactive, watch } from "vue";
 import _ from "lodash";
 import type { LocationQueryRaw } from "vue-router";
+import type { PagerInstance } from "./types";
 
 export default function () {
   const localRoute: {
@@ -10,24 +11,23 @@ export default function () {
   });
 
   const filters: LocationQueryRaw = reactive({});
-  const pager = reactive({
+  const pager: PagerInstance = reactive({
     total: 0,
     pageSize: 10,
     currentPage: 1,
+    onPagerSizeChange: (pageSize: number) => {
+      pager.pageSize = pageSize;
+      pushToQuery({
+        pageSize,
+      });
+    },
+    onPagerChange: (page: number) => {
+      pager.currentPage = page;
+      pushToQuery({
+        page,
+      });
+    },
   });
-
-  const onPagerSizeChange = (pageSize: number) => {
-    pager.pageSize = pageSize;
-    pushToQuery({
-      pageSize,
-    });
-  };
-  const onPagerChange = (page: number) => {
-    pager.currentPage = page;
-    pushToQuery({
-      page,
-    });
-  };
 
   const pushToQuery = (obj: LocationQueryRaw) => {
     localRoute.query = {
@@ -73,8 +73,6 @@ export default function () {
   return {
     filters,
     pager,
-    onPagerSizeChange,
-    onPagerChange,
     initGetData,
     onSearch,
   };

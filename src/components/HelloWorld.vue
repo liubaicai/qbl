@@ -27,17 +27,7 @@
     </el-table-column>
   </el-table>
 
-  <el-pagination
-    background
-    v-model:currentPage="pager.currentPage"
-    :page-sizes="[5, 10, 15, 20, 30, 50, 100, 500, 1000]"
-    :page-size="pager.pageSize"
-    layout="total, sizes, prev, pager, next, jumper"
-    :total="pager.total"
-    @size-change="onPagerSizeChange"
-    @current-change="onPagerChange"
-  >
-  </el-pagination>
+  <Pagination v-model="pager" />
 </template>
 
 <script setup lang="ts">
@@ -72,7 +62,7 @@ const props = defineProps({
 });
 
 const { storeData } = pd();
-const { filters, pager, onPagerSizeChange, onPagerChange, onSearch, initGetData } = pt();
+const { filters, pager, onSearch, initGetData } = pt();
 
 filters.keyword = "";
 

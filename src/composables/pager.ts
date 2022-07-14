@@ -2,6 +2,7 @@ import { reactive, onBeforeMount, watch } from "vue";
 import { useRoute, useRouter, type LocationQueryRaw, type LocationQueryValue } from "vue-router";
 import _ from "lodash";
 import { storage } from "@/utils/storage";
+import type { PagerInstance } from "./types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const tryParseJson = (str: any) => {
@@ -26,25 +27,24 @@ export default function () {
   const defaultPageSize = parseInt(defaultPageSizeStr, 10);
 
   const filters: LocationQueryRaw = reactive({});
-  const pager = reactive({
+  const pager: PagerInstance = reactive({
     total: 0,
     pageSize: defaultPageSize,
     currentPage: 1,
+    onPagerSizeChange: (pageSize: number) => {
+      pager.pageSize = pageSize;
+      storage.set(`pager:${routeName}`, pageSize.toString());
+      pushToQuery({
+        pageSize,
+      });
+    },
+    onPagerChange: (page: number) => {
+      pager.currentPage = page;
+      pushToQuery({
+        page,
+      });
+    },
   });
-
-  const onPagerSizeChange = (pageSize: number) => {
-    pager.pageSize = pageSize;
-    storage.set(`pager:${routeName}`, pageSize.toString());
-    pushToQuery({
-      pageSize,
-    });
-  };
-  const onPagerChange = (page: number) => {
-    pager.currentPage = page;
-    pushToQuery({
-      page,
-    });
-  };
 
   const pushToQuery = (obj: LocationQueryRaw) => {
     const query: LocationQueryRaw = {
@@ -102,8 +102,6 @@ export default function () {
   return {
     filters,
     pager,
-    onPagerSizeChange,
-    onPagerChange,
     initGetData,
     onSearch,
   };
