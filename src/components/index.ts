@@ -1,8 +1,8 @@
 import type { App } from "vue";
 
-import SvgIcon from "@/assets/icons/SvgIcon.vue";
-import Logo from "./Logo.vue";
-import Pagination from "./Pagination.vue";
+import SvgIcon from "./global/SvgIcon/SvgIcon.vue";
+import Logo from "./global/Logo.vue";
+import Pagination from "./global/Pagination.vue";
 
 function install(app: App<Element>) {
   app.component("svg-icon", SvgIcon);
