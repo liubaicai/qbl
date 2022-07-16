@@ -38,7 +38,7 @@ import { _ } from "@/composables/plugins";
 import { ref, toRefs, onMounted } from "vue";
 import { useIndexStore } from "@/stores/index";
 import { logApi } from "@/api/index";
-import UrlMonitor from "@/utils/url-monitor";
+import UrlMonitor from "@/utils/urlMonitor";
 
 import { type ValidateRules, validateEmpty } from "@/utils/validate";
 

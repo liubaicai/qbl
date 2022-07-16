@@ -9,7 +9,7 @@ const headers = {
   Accept: "application/json",
 } as AxiosRequestHeaders;
 
-const messageForFailed = _.debounce((e) => {
+const message = _.debounce((e) => {
   ElMessage({
     type: "error",
     message: e,
@@ -24,11 +24,11 @@ const request = <T>(options: AxiosRequestConfig<RequestDataType>) => {
     })
     .catch((err: Error | AxiosError) => {
       console.error(err);
-      messageForFailed(err?.message || err);
+      message(err?.message || err);
       return Promise.reject(err);
     });
 };
 
 const instance: AxiosInstance = service;
 
-export { request, instance };
+export { request, instance, message };
