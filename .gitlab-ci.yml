@@ -1,0 +1,8 @@
+
+
+test_async:
+  tags:
+    - nodejs
+  script:
+    - npm ci
+    - npm run build:vite
