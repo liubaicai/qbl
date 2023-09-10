@@ -38,21 +38,8 @@ import { _ } from "@/composables/plugins";
 import { ref, toRefs, onMounted } from "vue";
 import { useIndexStore } from "@/stores/index";
 import { logApi } from "@/api/index";
-import UrlMonitor from "@/utils/urlMonitor";
 
 import { type ValidateRules, validateEmpty } from "@/utils/validate";
-
-const monitor = new UrlMonitor({
-  url: "/mock/log.json",
-  interval: 10000,
-});
-monitor.on("change", (e) => {
-  console.log(e);
-  if (e === monitor.Status.SUCCESS) {
-    monitor.stop();
-  }
-});
-monitor.start();
 
 const props = defineProps({
   msg: {
