@@ -3,21 +3,13 @@ module.exports = {
   types: [
     { value: "✨", name: "feat:     新增功能" },
     { value: "🐛", name: "fix:      修复 bug" },
-    { value: "🔨", name: "refactor: 代码重构（不包括 bug 修复、功能新增）" },
-    { value: "🎨", name: "style:    代码格式（不影响功能，例如空格、分号等格式修正）" },
     { value: "⚡️", name: "perf:     性能优化" },
-    { value: "📝", name: "docs:     文档变更" },
-    { value: "🔧", name: "tools:    构建工具、脚本、项目配置等" },
-    { value: "✅", name: "test:     添加、修改测试用例" },
+    { value: "🔧", name: "tools:    文档、构建工具、脚本、项目配置等" },
     { value: "➖", name: "revert:   回滚 commit" },
   ],
 
   // scope 类型（定义之后，可通过上下键选择）
   scopes: [
-    ["main", "平台相关"],
-    ["vis", "大屏相关"],
-    ["tools", "项目相关"],
-    ["other", "其他修改"],
     // 如果选择 custom，后面会让你再输入一个自定义的 scope。也可以不设置此项，把后面的 allowCustomScopes 设置为 true
     ["custom", "以上都不是？我要自定义"],
   ].map(([value, description]) => {
@@ -64,7 +56,7 @@ module.exports = {
   allowBreakingChanges: ["feat", "fix"],
 
   // 跳过要询问的步骤
-  skipQuestions: [],
+  skipQuestions: ["body", "scope"],
 
   // subject 限制长度
   subjectLimit: 100,

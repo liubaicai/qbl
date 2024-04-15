@@ -1,6 +1,5 @@
-/* 配置文件 */
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "extends": "@vue/tsconfig/tsconfig.json",
   "include": ["env.d.ts", "src/**/*"],
   "exclude": [],
   "compilerOptions": {

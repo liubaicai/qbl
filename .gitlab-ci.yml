@@ -5,4 +5,4 @@ test_async:
     - nodejs
   script:
     - npm ci
-    - npm run build:vite
+    - npm run build
